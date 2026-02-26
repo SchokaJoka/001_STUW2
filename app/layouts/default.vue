@@ -8,7 +8,7 @@
           </NuxtLink>
           <div class="flex gap-4">
             <NuxtLink to="/" class="text-gray-700 hover:text-blue-600"
-              >Home</NuxtLink
+              >Start</NuxtLink
             >
             <NuxtLink to="/about" class="text-gray-700 hover:text-blue-600"
               >About</NuxtLink
