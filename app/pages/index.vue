@@ -37,13 +37,13 @@
       </div>
 
       <!-- Game Selection -->
-      <div class="border-2 border-black p-6 mb-6">
+      <div class="border-5 border-black p-6 mb-6">
         <h2 class="text-xl font-semibold text-black mb-4">Choose Your Game</h2>
         <div v-if="loading" class="text-center py-8">
           <div
             class="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto"
           ></div>
-          <div class="border-2 border-black"></div>
+          <div class="border-5 border-black"></div>
           <p class="text-black mt-4">Loading card packs...</p>
         </div>
         <div v-else class="space-y-3">
