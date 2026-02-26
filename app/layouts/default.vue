@@ -10,8 +10,13 @@
             MyApp
           </NuxtLink>
           <div class="flex gap-4">
+<<<<<<< HEAD
             <NuxtLink to="/" class="text-gray-400 hover:text-red-600"
               >Home</NuxtLink
+=======
+            <NuxtLink to="/" class="text-gray-700 hover:text-blue-600"
+              >Test</NuxtLink
+>>>>>>> b3d4768ed58c7a3db2fb72dd7c5699f478a94d45
             >
             <NuxtLink to="/about" class="text-gray-400 hover:text-red-600"
               >About</NuxtLink
