@@ -38,42 +38,34 @@
 
       <!-- Game Selection -->
       <div class="border-5 border-black p-6 mb-6">
-        <h2 class="text-xl font-semibold text-black mb-4">Choose Your Game</h2>
+        <h2 class="text-xl font-semibold text-black mb-4">
+          Choose Your Card Set
+        </h2>
         <div v-if="loading" class="text-center py-8">
           <div
             class="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto"
           ></div>
           <div class="border-5 border-black"></div>
-          <p class="text-black mt-4">Loading card packs...</p>
+          <p class="text-black mt-4">Loading card sets...</p>
         </div>
         <div v-else class="space-y-3">
           <button
-            v-for="pack in cardPacks"
-            :key="pack.id"
-            @click="selectedGame = pack.id"
+            v-for="set in cardSets"
+            :key="set.id"
+            @click="selectedGame = set.id"
             :class="[
               'w-full p-4 border-2 transition text-left',
-              selectedGame === pack.id
+              selectedGame === set.id
                 ? 'border-black bg-black text-white'
                 : 'border-black bg-white text-black hover:bg-black hover:text-white',
             ]"
           >
             <div class="flex items-center justify-between">
               <div>
-                <h3 class="font-semibold">{{ pack.name }}</h3>
-                <p class="text-sm opacity-70">{{ pack.description }}</p>
-                <span
-                  v-if="pack.is_preset"
-                  :class="[
-                    'inline-block mt-1 px-2 py-1 text-xs border',
-                    selectedGame === pack.id ? 'border-white' : 'border-black',
-                  ]"
-                >
-                  Preset Pack
-                </span>
+                <h3 class="font-semibold">{{ set.name }}</h3>
               </div>
               <div
-                v-if="selectedGame === pack.id"
+                v-if="selectedGame === set.id"
                 class="w-6 h-6 border-2 border-white flex items-center justify-center"
               >
                 <svg
@@ -108,20 +100,19 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
-import type { CardPack } from "~/types/database";
+import type { Set } from "../../types/database";
 
 const playerCount = ref(3);
 const selectedGame = ref<string | null>(null);
-const cardPacks = ref<CardPack[]>([]);
+const cardSets = ref<Set[]>([]);
 const loading = ref(true);
 
 onMounted(async () => {
   try {
-    const { getCardPacks } = useCards();
-    cardPacks.value = await getCardPacks();
+    const { getCardSets } = useCards();
+    cardSets.value = await getCardSets();
   } catch (error) {
-    console.error("Error loading card packs:", error);
+    console.error("Error loading card sets:", error);
   } finally {
     loading.value = false;
   }

@@ -10,8 +10,13 @@
             MyApp
           </NuxtLink>
           <div class="flex gap-4">
+<<<<<<< Updated upstream
             <NuxtLink to="/" class="text-gray-700 hover:text-blue-600"
               >Test</NuxtLink
+=======
+            <NuxtLink to="/" class="text-gray-400 hover:text-red-600"
+              >Home</NuxtLink
+>>>>>>> Stashed changes
             >
             <NuxtLink to="/about" class="text-gray-400 hover:text-red-600"
               >About</NuxtLink

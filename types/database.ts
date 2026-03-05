@@ -1,45 +1,82 @@
-export interface CardPack {
+export interface Card {
   id: string;
-  name: string;
-  description: string | null;
-  is_custom: boolean;
-  is_preset: boolean;
+  text: string;
+  is_black: boolean;
   created_at: string;
   updated_at: string;
+  set_id: string;
 }
 
-export interface BlackCard {
+export interface BlackCard extends Card {
+  is_black: true;
+}
+
+export interface WhiteCard extends Card {
+  is_black: false;
+}
+
+export interface GameMove {
   id: string;
-  pack_id: string;
-  text: string;
-  pick: number;
+  room_id: string;
+  actor_id: string;
+  seq: number;
+  payload: any;
   created_at: string;
 }
 
-export interface WhiteCard {
+export interface RoomMember {
   id: string;
-  pack_id: string;
-  text: string;
+  room_id: string;
+  user_id: string;
+  role: string;
+  joined_at: string;
+  is_active: boolean;
+  left_at: string | null;
+}
+
+export interface Room {
+  id: string;
+  code: string;
+  owner: string;
+  metadata: any;
   created_at: string;
+}
+
+export interface Set {
+  id: string;
+  user_id: string;
+  name: string;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface Database {
   public: {
     Tables: {
-      card_packs: {
-        Row: CardPack;
-        Insert: Omit<CardPack, "id" | "created_at" | "updated_at">;
-        Update: Partial<Omit<CardPack, "id" | "created_at" | "updated_at">>;
+      cards: {
+        Row: Card;
+        Insert: Omit<Card, "id" | "created_at" | "updated_at">;
+        Update: Partial<Omit<Card, "id" | "created_at" | "updated_at">>;
       };
-      black_cards: {
-        Row: BlackCard;
-        Insert: Omit<BlackCard, "id" | "created_at">;
-        Update: Partial<Omit<BlackCard, "id" | "created_at">>;
+      game_moves: {
+        Row: GameMove;
+        Insert: Omit<GameMove, "id" | "created_at">;
+        Update: Partial<Omit<GameMove, "id" | "created_at">>;
       };
-      white_cards: {
-        Row: WhiteCard;
-        Insert: Omit<WhiteCard, "id" | "created_at">;
-        Update: Partial<Omit<WhiteCard, "id" | "created_at">>;
+      room_members: {
+        Row: RoomMember;
+        Insert: Omit<RoomMember, "id" | "joined_at">;
+        Update: Partial<Omit<RoomMember, "id" | "joined_at">>;
+      };
+      rooms: {
+        Row: Room;
+        Insert: Omit<Room, "id" | "created_at">;
+        Update: Partial<Omit<Room, "id" | "created_at">>;
+      };
+      sets: {
+        Row: Set;
+        Insert: Omit<Set, "id" | "created_at" | "updated_at">;
+        Update: Partial<Omit<Set, "id" | "created_at" | "updated_at">>;
       };
     };
   };
